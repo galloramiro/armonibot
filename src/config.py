@@ -6,4 +6,4 @@ from logging import config
 
 # LOGGER CONFIG
 config.fileConfig("/app/logging.conf")
-LOGGER = logging.getLogger("replace_me")
+LOGGER = logging.getLogger("armoni-bot")
