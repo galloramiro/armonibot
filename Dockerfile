@@ -18,3 +18,5 @@ RUN poetry install
 
 # Copy core project
 COPY src /app/src
+
+EXPOSE 8000

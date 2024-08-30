@@ -11,6 +11,9 @@ This would also be use as an example on a talk about how to develop an idea from
 5. Yoy can use the `make terminal` to use a terminal inside the container
 6. Create your own `.env` using the `.env.example` as a base 
 
+## ENV variables
+- `TOKEN`: str
+- `USERNAME`: str
 
 ## Testing and lint
 - `make test` would run all the test on the tests folder
