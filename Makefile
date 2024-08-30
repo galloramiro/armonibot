@@ -15,6 +15,13 @@ build: ## Build the docker image.
 		--build-arg VERSION=$(TAG) \
 		-t $(CONTAINER_NAME) . \
 
+.PHONY: run
+run: ## Runing the bot.
+	docker run \
+		-v `pwd`:/app \
+		--env-file .env \
+		-it $(CONTAINER_NAME) python3 /app/src/main.py \
+
 .PHONY: lock-dependencies
 lock-dependencies: ## Lock poetry dependencies.
 	docker run \
