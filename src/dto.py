@@ -1,8 +1,21 @@
+from enum import Enum
 from typing import Dict
 from dataclasses import dataclass
 
+
+class HarmonicaTones(Enum):
+    A = ("A", "LA")
+    B = ("B", "SI")
+    C = ("C", "DO")
+    D = ("D", "RE")
+    E = ("E", "MI")
+    F = ("F", "FA")
+    G = ("G", "SOL")
+
+
 @dataclass
 class Harmonica:
+    tone = HarmonicaTones
     hole_01: Dict[str, str]
     hole_02: Dict[str, str]
     hole_03: Dict[str, str]
