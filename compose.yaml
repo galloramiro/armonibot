@@ -1,0 +1,9 @@
+services:
+  armoni-bot:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    env_file: ".env"
+    command: /bin/sh -c 'python3 /app/src/main.py'
