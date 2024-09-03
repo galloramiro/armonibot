@@ -17,10 +17,8 @@ build: ## Build the docker image.
 
 .PHONY: run
 run: ## Runing the bot.
-	docker run \
-		-v `pwd`:/app \
-		--env-file .env \
-		-it $(CONTAINER_NAME) python3 /app/src/main.py \
+	docker-compose stop
+	docker-compose up
 
 .PHONY: lock-dependencies
 lock-dependencies: ## Lock poetry dependencies.
@@ -58,11 +56,8 @@ test: ## Run service linting.
 
 .PHONY: debug
 debug: ## Run service linting.
-	docker run -it \
-		-v $(shell pwd)/src:/app/src \
-		-v $(shell pwd)/tests:/app/tests \
-		--env-file .env \
-		$(CONTAINER_NAME) \
+	docker-compose stop
+	docker-compose run $(CONTAINER_NAME) \
 		/bin/bash -c "poetry run pytest ${test_dir} -s -vv"
 
 .PHONY: terminal
@@ -70,4 +65,4 @@ terminal:
 	docker run \
 		-v `pwd`:/app \
 		--env-file .env \
-		-it $(CONTAINER_NAME) bash \
+		-it $(CONTAINER_NAME) bash
