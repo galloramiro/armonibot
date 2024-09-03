@@ -15,7 +15,7 @@ class HarmonicaTones(Enum):
 
 @dataclass
 class Harmonica:
-    tone = HarmonicaTones
+    tone: str
     hole_01: Dict[str, str]
     hole_02: Dict[str, str]
     hole_03: Dict[str, str]
