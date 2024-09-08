@@ -13,22 +13,28 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def harmonica_by_tone(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     """Starts the conversation and asks the user for a harmonica tone."""
     harmonica_tone = context.args[0].upper()
-    harmonica = HarmonicaRepository().load_harmonica_by_american_tone(harmonica_tone)
-    harmonica = HarmonicaDrawer(harmonica)
-    await update.message.reply_text(harmonica.__str__())
+    try:
+        harmonica = HarmonicaRepository().load_harmonica_by_american_tone(harmonica_tone)
+        harmonica = HarmonicaDrawer(harmonica)
+        await update.message.reply_text(harmonica.__str__())
+    except:
+        await update.message.reply_text(f"Sorry but we didn't find the tone {harmonica_tone}.")
     return ConversationHandler.END
 
 
 async def tone_by_song_tone(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     """Starts the conversation and asks the user for a song tone."""
-    harmonica_tone = context.args[0].upper()
+    song_tone = context.args[0]
     circle_of_fifths = ["C", "G", "D", "A", "E", "B", "F#", "Db", "Ab", "Eb", "Bb", "F"]
-    tone_index = circle_of_fifths.index(harmonica_tone)
-    order_of_fifths = circle_of_fifths[tone_index+1:] + circle_of_fifths[:tone_index+1]
-    harmonica_tone_for_song = order_of_fifths[-5]
-    harmonica = HarmonicaRepository().load_harmonica_by_american_tone(harmonica_tone_for_song)
-    harmonica = HarmonicaDrawer(harmonica)
-    await update.message.reply_text(harmonica.__str__())
+    try:
+        tone_index = circle_of_fifths.index(song_tone)
+        order_of_fifths = circle_of_fifths[tone_index+1:] + circle_of_fifths[:tone_index+1]
+        harmonica_tone = order_of_fifths[-5]
+        harmonica = HarmonicaRepository().load_harmonica_by_american_tone(harmonica_tone)
+        harmonica = HarmonicaDrawer(harmonica)
+        await update.message.reply_text(harmonica.__str__())
+    except:
+        await update.message.reply_text(f"Sorry but we didn't find the tone for this song tone {song_tone}.")
     return ConversationHandler.END
 
 start_handler = CommandHandler("start", start)
