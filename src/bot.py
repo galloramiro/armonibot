@@ -19,7 +19,7 @@ async def harmonica_by_tone(update: Update, context: ContextTypes.DEFAULT_TYPE) 
     return ConversationHandler.END
 
 
-async def harmonica_by_song_tone(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
+async def tone_by_song_tone(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     """Starts the conversation and asks the user for a song tone."""
     harmonica_tone = context.args[0].upper()
     circle_of_fifths = ["C", "G", "D", "A", "E", "B", "F#", "Db", "Ab", "Eb", "Bb", "F"]
@@ -33,3 +33,4 @@ async def harmonica_by_song_tone(update: Update, context: ContextTypes.DEFAULT_T
 
 start_handler = CommandHandler("start", start)
 harmonica_by_tone_handler = CommandHandler("harmonica_by_tone", harmonica_by_tone)
+tone_by_song_tone_handler = CommandHandler("tone_by_song_tone", tone_by_song_tone)
