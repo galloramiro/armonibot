@@ -3,7 +3,7 @@ from src.repository import HarmonicaRepository
 
 
 def test_load_harmonica_by_american_tone():
-    harmonica = HarmonicaRepository().load_harmonica_by_american_tone(HarmonicaTones.A)
+    harmonica = HarmonicaRepository().load_harmonica_by_american_tone(HarmonicaTones.A.name)
     expected_harmonica = Harmonica(
         tone=HarmonicaTones.A.name,
         hole_01={"draw": "B", "blow": "A", "bending_1":"A#"},
